@@ -1,0 +1,72 @@
+<!--*************************************************
+|Gerald Fletcher                      				|
+|C06414401                            				|
+|Webelevate 3.0                    				    |
+|Mobile Web Applications             				|
+|Mobile Web Applications Assignment 1 (version 2)	|
+|Due Date: 2014/4/02                  				|
+**************************************************-->
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link rel="stylesheet" href="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.css" />
+		<link rel="stylesheet" href="themes/Arsenal_Theme.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	</head>
+		<body>
+
+			<div id="teamPages">
+
+				<div data-role="page">
+
+					<div data-role="header" data-position="fixed"><!--Header for the main page-->
+						<h1>Popular Premier League Teams</h1>
+						<a href="#MySidePanel" data-icon="info"  data-iconpos="notext">Menu</a><!--Button for Side-panel-->
+					</div>
+					
+					<div data-role="content">
+						<div class="container">
+							<ul data-filter="true" data-insert="true" data-role="listview" id="teamList"><!--Search function with list view-->
+							</ul>
+						</div>
+					</div>
+					<!--Start Side-panel-->
+					<div data-role="panel" class="panel left" id="MySidePanel">
+						<p>This is an app that lets you find out some information about popular premiership teams.</p>
+						<ul>
+							<li>Arsenal have won the Premier League 13 times.</li>
+							<li>Chelsea have won the Premier League 4 times.</li>
+							<li>Manchester United have won the Premier League 20 times.</li>
+							<li>Manchester City have won the Premier League 3 times.</li>
+							<li>Liverpool have won the Premier League 18 times.</li>
+							<li>Tottenham have won the Premier League 2 times.</li>
+							<li>Everton have won the Premier League 9 times.</li>
+						</ul>
+						<button href="#teamPages" data-inline="true" data-rel="close">Close panel</button>
+					</div><!--End Side-panel-->
+
+				</div>
+
+			</div>
+			<!--This is where the app would use any live data.-->
+			<script type="text/javascript">
+
+			$(document).on("ready", function() {
+
+				$.getJSON("teamPLWins.json", function(data) {
+
+					$.each(data, function(key, value) {
+
+						$("#teamList").append('<li><a href="#teamWins' + key + '" data-transition="pop">' + key + '</a></li>');
+
+						$("#teamPages").append('<div data-role="page" id="teamWins' + key + '"><div data-role="header"><a href="MWA_Assignment.v2.html" data-icon="home" data-iconpos="notext">Home</a><h1>' + key + ' Premier League Wins</h1></div><div data-role="content"><p>These are the years ' + key + ' won the Premier League: "' + value + '"</p></div></div>');
+					});
+				});
+			});
+
+			</script>
+
+		</body>
+</html>
