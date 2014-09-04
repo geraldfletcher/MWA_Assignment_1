@@ -8,6 +8,7 @@ Assignment 1: JQM List App
 Assignment Breif:
 
 The app should incorporate the following features.
+
 1. Based on jQuery Mobile.
  
 2. Present the user with an input box to filter the full list; i.e. a client-side search feature.
